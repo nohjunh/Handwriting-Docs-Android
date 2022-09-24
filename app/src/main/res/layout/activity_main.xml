@@ -10,14 +10,16 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_height="35dp"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:background="@color/black">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/logo_title"/>
+                android:src="@drawable/logo_title3" />
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
     <LinearLayout
@@ -45,12 +47,13 @@
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:background="@color/white"
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="0dp"
-        app:menu="@menu/bottom_navigation_main">
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        android:layout_marginBottom="-1dp"
+        android:background="@color/black"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/bottom_navigation_main"></com.google.android.material.bottomnavigation.BottomNavigationView>
 </RelativeLayout>
