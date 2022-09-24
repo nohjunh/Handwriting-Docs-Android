@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainPage"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/detailviewitemProfileImage"
+            android:src="@mipmap/ic_launcher"
+            android:layout_margin="7.5dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"/>
+        <TextView
+            android:text="User name"
+            android:id="@+id/detailviewitemProfileTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/detailviewitemImageViewContent"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"/>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/detailviewitemFavoriteImageView"
+            android:src="@drawable/ic_favorite_border"
+            android:layout_width="35dp"
+            android:layout_height="35dp"/>
+        <ImageView
+            android:id="@+id/detailviewitemCommentImageView"
+            android:src="@drawable/ic_chat_black"
+            android:layout_width="35dp"
+            android:layout_height="35dp"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/detailviewitemFavoriteCounterTextView"
+        android:text="Like 0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/detailviewitemExplainTextView"
+        android:text="Explain content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:id="@+id/mainPage_division"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+    </LinearLayout>
+</LinearLayout>
