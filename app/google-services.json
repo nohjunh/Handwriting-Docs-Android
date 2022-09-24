@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1000517155797",
+    "project_id": "howistagramf16-e9c00",
+    "storage_bucket": "howistagramf16-e9c00.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1000517155797:android:4a425a933d0377c2e59b5c",
+        "android_client_info": {
+          "package_name": "com.example.howistagram_f16"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1000517155797-ieivopu4mkd087cif5ev3ate8fdiv56g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.howistagram_f16",
+            "certificate_hash": "5a351ecfc962e33050a34792424cc8aeff00024a"
+          }
+        },
+        {
+          "client_id": "1000517155797-3kiuhj3lk5vee3v5dtevd9qfvm4n9nld.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgKSta_QFOhO7LLjHDke6S77THFR4mT3g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1000517155797-3kiuhj3lk5vee3v5dtevd9qfvm4n9nld.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
