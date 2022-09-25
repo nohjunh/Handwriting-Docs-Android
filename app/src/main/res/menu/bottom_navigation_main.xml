@@ -4,7 +4,7 @@
         android:id="@+id/action_home"
         android:icon="@drawable/ic_home"
         android:enabled="true"
-        android:title="@string/home"/>
+        android:title="@string/home" />
     <item
         android:id="@+id/action_search"
         android:icon="@drawable/ic_search"
@@ -17,7 +17,7 @@
         android:title="@string/gallery"/>
     <item
         android:id="@+id/action_favorite_alarm"
-        android:icon="@drawable/ic_favorite"
+        android:icon="@drawable/ic_favorite_border"
         android:enabled="true"
         android:title="@string/favorite"/>
     <item
