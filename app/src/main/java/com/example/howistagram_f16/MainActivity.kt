@@ -35,8 +35,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 return true
             }
             R.id.action_search ->{
-                var gridFragment = GridFragment()
-                supportFragmentManager.beginTransaction().replace(R.id.main_content,gridFragment).commit()
+                startActivity((Intent(this, stylusActivity::class.java)))
                 return true
             }
             R.id.action_add_photo ->{

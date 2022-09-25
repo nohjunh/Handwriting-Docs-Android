@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.howistagram_f16"
-        minSdkVersion 16
+        minSdkVersion 29
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -50,7 +50,9 @@ dependencies {
 
     implementation platform('com.google.firebase:firebase-bom:26.1.0')
     implementation 'com.google.firebase:firebase-storage'
-    
+
+    implementation "com.microsoft.device:ink:1.0.0-alpha2"
+
     implementation 'com.android.support:multidex:1.0.3'
 
     implementation 'com.google.android.gms:play-services-auth:20.3.0'
