@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:id="@+id/main"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -37,12 +38,34 @@
             android:layout_margin="10dp"
             android:background="@drawable/white_background"/>
     </LinearLayout>
-
-    <RelativeLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="600dp"
         android:layout_below="@+id/stylusToolbar">
 
         <include layout="@layout/paint_view"/>
+    </com.google.android.material.card.MaterialCardView>
+    <RelativeLayout
+        android:layout_below="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/nav_division"
+            android:background="@color/little_white"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="5dp">
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/SCbutton"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nav_division"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="-2dp"
+            android:gravity="center"
+            android:text="ScreenSHOT" />
     </RelativeLayout>
 </RelativeLayout>

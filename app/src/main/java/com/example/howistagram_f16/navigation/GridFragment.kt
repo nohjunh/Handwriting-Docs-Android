@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.howistagram_f16.R
+import java.util.*
 
 class GridFragment : Fragment() {
     override fun onCreateView(
@@ -17,4 +18,5 @@ class GridFragment : Fragment() {
 
         return view
     }
+
 }
