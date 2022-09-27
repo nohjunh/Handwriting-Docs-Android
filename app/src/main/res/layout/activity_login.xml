@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/signin_layout"
         android:layout_alignParentTop="true"
-        android:src="@drawable/logo_title" />
+        android:src="@drawable/logo_title3" />
 
     <LinearLayout
         android:id="@+id/signin_layout"

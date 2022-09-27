@@ -74,7 +74,7 @@ class stylusActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
         ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1)
 
-        val cardView = findViewById<CardView>(R.id.cardView)
+        val cardView = findViewById<CardView>(R.id.cardView2)
 
         // on click of this button it will capture
         // screenshot and save into gallery

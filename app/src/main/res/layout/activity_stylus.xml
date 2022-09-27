@@ -42,9 +42,22 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="600dp"
-        android:layout_below="@+id/stylusToolbar">
-
-        <include layout="@layout/paint_view"/>
+        android:layout_below="@+id/stylusToolbar"
+        >
+        <ImageView
+            android:src="@drawable/test1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"/>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardView2"
+            android:layout_width="210dp"
+            android:layout_height="73dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="82dp">
+            <include
+                layout="@layout/paint_view" />
+        </com.google.android.material.card.MaterialCardView>
     </com.google.android.material.card.MaterialCardView>
     <RelativeLayout
         android:layout_below="@+id/cardView"
