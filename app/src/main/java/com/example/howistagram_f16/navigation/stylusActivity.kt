@@ -1,6 +1,7 @@
 package com.example.howistagram_f16.navigation
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.pm.PackageManager
 import android.graphics.*
@@ -10,6 +11,8 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
+import android.view.GestureDetector
+import android.view.MotionEvent
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -31,11 +34,24 @@ class stylusActivity : AppCompatActivity() {
         var paintBrush = Paint()
     }
 
+    var detector: GestureDetector? = null //무슨 제스쳐를 했는지 감지
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stylus)
         supportActionBar?.hide()
+
+        val captureButton = findViewById<Button>(R.id.SCbutton)
+
+
+        detector = GestureDetector(this, object : GestureDetector.SimpleOnGestureListener() {
+            //화면을 손가락으로 오랫동안 눌렀을 경우
+            override fun onLongPress(e: MotionEvent) {
+                captureButton.performClick()
+            }
+
+        })
 
         var redBtn = findViewById<ImageButton>(R.id.redColor)
         var blueBtn = findViewById<ImageButton>(R.id.blueColor)
@@ -74,15 +90,20 @@ class stylusActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
         ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1)
 
-        val cardView = findViewById<CardView>(R.id.cardView2)
 
+        val cardView = findViewById<CardView>(R.id.cardView2)
+        val TouchView = findViewById<PaintView>(R.id.paintVVIEW)
+        TouchView.setOnTouchListener { _, event ->
+            detector!!.onTouchEvent(event)
+        }
         // on click of this button it will capture
         // screenshot and save into gallery
-        val captureButton = findViewById<Button>(R.id.SCbutton)
+
         captureButton.setOnClickListener {
             // get the bitmap of the view using
             // getScreenShotFromView method it is
             // implemented below
+
             val bitmap = getScreenShotFromView(cardView)
 
             // if bitmap is not null then
@@ -161,5 +182,9 @@ class stylusActivity : AppCompatActivity() {
     private fun currentColor(color: Int){
         currentBrush = color
         path = Path()
+    }
+
+    private fun printString() {
+        Toast.makeText(this , "Captured View and saved to Gallery" , Toast.LENGTH_SHORT).show()
     }
 }
