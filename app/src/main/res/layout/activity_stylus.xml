@@ -38,29 +38,41 @@
             android:layout_margin="10dp"
             android:background="@drawable/white_background"/>
     </LinearLayout>
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardView"
+
+    <ImageView
+        android:id="@+id/docsImage"
+        android:src="@drawable/test1"
         android:layout_width="match_parent"
         android:layout_height="600dp"
-        android:layout_below="@+id/stylusToolbar"
-        >
-        <ImageView
-            android:src="@drawable/test1"
+        android:scaleType="fitXY"
+        android:layout_below="@+id/stylusToolbar">
+    </ImageView>
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/paintVIEW1card"
+        android:layout_width="210dp"
+        android:layout_height="73dp"
+        android:layout_marginLeft="158dp"
+        android:layout_marginTop="152dp">
+        <com.example.howistagram_f16.PaintView
+            android:id="@+id/paintVIEW1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"/>
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardView2"
-            android:layout_width="210dp"
-            android:layout_height="73dp"
-            android:layout_marginLeft="150dp"
-            android:layout_marginTop="82dp">
-            <include
-                layout="@layout/paint_view" />
-        </com.google.android.material.card.MaterialCardView>
+            android:layout_height="match_parent">
+        </com.example.howistagram_f16.PaintView>
+    </com.google.android.material.card.MaterialCardView>
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/paintVIEW2card"
+        android:layout_width="300dp"
+        android:layout_height="73dp"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="305dp">
+        <com.example.howistagram_f16.PaintView
+            android:id="@+id/paintVIEW2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.example.howistagram_f16.PaintView>
     </com.google.android.material.card.MaterialCardView>
     <RelativeLayout
-        android:layout_below="@+id/cardView"
+        android:layout_below="@+id/docsImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout

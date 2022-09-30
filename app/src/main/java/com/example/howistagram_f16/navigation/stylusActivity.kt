@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.pm.PackageManager
 import android.graphics.*
+import android.media.Image
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -14,6 +15,7 @@ import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -23,11 +25,12 @@ import com.example.howistagram_f16.PaintView.Companion.colorList
 import com.example.howistagram_f16.PaintView.Companion.currentBrush
 import com.example.howistagram_f16.PaintView.Companion.pathList
 import com.example.howistagram_f16.R
+import com.google.android.material.card.MaterialCardView
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
-import java.util.*
 
+@Suppress("DEPRECATION")
 class stylusActivity : AppCompatActivity() {
     companion object{
         var path = Path()
@@ -44,14 +47,16 @@ class stylusActivity : AppCompatActivity() {
 
         val captureButton = findViewById<Button>(R.id.SCbutton)
 
+        var currentAction= ""
 
         detector = GestureDetector(this, object : GestureDetector.SimpleOnGestureListener() {
             //화면을 손가락으로 오랫동안 눌렀을 경우
             override fun onLongPress(e: MotionEvent) {
-                captureButton.performClick()
+                currentAction = "isLongPressed"
+                super.onLongPress(e)
             }
-
         })
+
 
         var redBtn = findViewById<ImageButton>(R.id.redColor)
         var blueBtn = findViewById<ImageButton>(R.id.blueColor)
@@ -90,20 +95,38 @@ class stylusActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
         ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1)
 
-
-        val cardView = findViewById<CardView>(R.id.cardView2)
-        val TouchView = findViewById<PaintView>(R.id.paintVVIEW)
-        TouchView.setOnTouchListener { _, event ->
+        val cardView= findViewById<ImageView>(R.id.docsImage)
+        //val TouchViewcardView = findViewById<MaterialCardView>(R.id.cardView2)
+        val TouchView1 = findViewById<PaintView>(R.id.paintVIEW1)
+        val TouchView2 = findViewById<PaintView>(R.id.paintVIEW2)
+        val gestureListener = View.OnTouchListener(function = { view, event ->
             detector!!.onTouchEvent(event)
-        }
+            if(event.getAction() == MotionEvent.ACTION_UP) {
+                when (currentAction) {
+                    "isLongPressed" -> {
+                        var viewNamelength= view.toString().length
+                        var unionName= view.toString().substring(viewNamelength-11, viewNamelength-1)+"card"
+                        Toast.makeText(this, "$unionName", Toast.LENGTH_SHORT).show()
+                        var resID = resources.getIdentifier("$unionName", "id", packageName)
+                        val bitmap = getScreenShotFromView(findViewById(resID))
+                        if (bitmap != null) {
+                            saveMediaToStorage(bitmap)
+                        }
+                        currentAction = ""
+                    }
+                }
+            }
+            false
+        })
+        TouchView1.setOnTouchListener(gestureListener)
+        TouchView2.setOnTouchListener(gestureListener)
+
         // on click of this button it will capture
         // screenshot and save into gallery
-
         captureButton.setOnClickListener {
             // get the bitmap of the view using
             // getScreenShotFromView method it is
             // implemented below
-
             val bitmap = getScreenShotFromView(cardView)
 
             // if bitmap is not null then
@@ -186,5 +209,9 @@ class stylusActivity : AppCompatActivity() {
 
     private fun printString() {
         Toast.makeText(this , "Captured View and saved to Gallery" , Toast.LENGTH_SHORT).show()
+    }
+
+    fun concat(s1: String, s2: String): String {
+        return s1 + s2
     }
 }
