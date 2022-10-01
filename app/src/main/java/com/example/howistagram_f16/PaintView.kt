@@ -13,7 +13,7 @@ import com.example.howistagram_f16.navigation.stylusActivity.Companion.paintBrus
 import com.example.howistagram_f16.navigation.stylusActivity.Companion.path
 import com.google.firebase.database.collection.LLRBNode
 
-class PaintView : View {
+class PaintView : View{
 
     var params : ViewGroup.LayoutParams? = null
 
@@ -23,11 +23,11 @@ class PaintView : View {
         var currentBrush = Color.BLACK;
     }
 
-    constructor(context: Context) : this(context, null) {
+    constructor(context: Context) : super(context, null) {
         init()
     }
 
-    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0) {
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs, 0) {
         init()
     }
 
@@ -70,6 +70,7 @@ class PaintView : View {
     }
 
     override fun onDraw(canvas: Canvas){
+        super.onDraw(canvas)
         for(i in pathList.indices){
             paintBrush.setColor(colorList[i])
             canvas.drawPath(pathList[i], paintBrush)

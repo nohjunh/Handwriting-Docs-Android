@@ -25,6 +25,7 @@ import com.example.howistagram_f16.PaintView.Companion.colorList
 import com.example.howistagram_f16.PaintView.Companion.currentBrush
 import com.example.howistagram_f16.PaintView.Companion.pathList
 import com.example.howistagram_f16.R
+import com.example.howistagram_f16.databinding.ActivityStylusBinding
 import com.google.android.material.card.MaterialCardView
 import java.io.File
 import java.io.FileOutputStream
@@ -32,6 +33,8 @@ import java.io.OutputStream
 
 @Suppress("DEPRECATION")
 class stylusActivity : AppCompatActivity() {
+    private val binding by lazy { ActivityStylusBinding.inflate(layoutInflater) }
+
     companion object{
         var path = Path()
         var paintBrush = Paint()
@@ -42,7 +45,7 @@ class stylusActivity : AppCompatActivity() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_stylus)
+        setContentView(binding.root)
         supportActionBar?.hide()
 
         val captureButton = findViewById<Button>(R.id.SCbutton)
@@ -56,37 +59,40 @@ class stylusActivity : AppCompatActivity() {
                 super.onLongPress(e)
             }
         })
+//////////////////////맨처음 했던 방법 삭제해도됨.
+//        var redBtn = findViewById<ImageButton>(R.id.redColor)
+//        var blueBtn = findViewById<ImageButton>(R.id.blueColor)
+//        var blackBtn = findViewById<ImageButton>(R.id.blackColor)
+//        var eraser = findViewById<ImageButton>(R.id.whiteColor)
+//
+//        redBtn.setOnClickListener {
+//            Toast.makeText(this, "Red !", Toast.LENGTH_SHORT).show()
+//            paintBrush.color = Color.RED
+//            currentColor(paintBrush.color)
+//        }
+//
+//        blueBtn.setOnClickListener {
+//            Toast.makeText(this, "Blue !", Toast.LENGTH_SHORT).show()
+//            paintBrush.color = Color.BLUE
+//            currentColor(paintBrush.color)
+//        }
+//
+//        blackBtn.setOnClickListener {
+//            Toast.makeText(this, "Black !", Toast.LENGTH_SHORT).show()
+//            paintBrush.color = Color.BLACK
+//            currentColor(paintBrush.color)
+//        }
+//
+//        eraser.setOnClickListener {
+//            Toast.makeText(this, "Eraser !", Toast.LENGTH_SHORT).show()
+//            pathList.clear()
+//            colorList.clear()
+//            path.reset()
+//        }
 
-
-        var redBtn = findViewById<ImageButton>(R.id.redColor)
-        var blueBtn = findViewById<ImageButton>(R.id.blueColor)
-        var blackBtn = findViewById<ImageButton>(R.id.blackColor)
-        var eraser = findViewById<ImageButton>(R.id.whiteColor)
-
-        redBtn.setOnClickListener {
-            Toast.makeText(this, "Red !", Toast.LENGTH_SHORT).show()
-            paintBrush.color = Color.RED
-            currentColor(paintBrush.color)
-        }
-
-        blueBtn.setOnClickListener {
-            Toast.makeText(this, "Blue !", Toast.LENGTH_SHORT).show()
-            paintBrush.color = Color.BLUE
-            currentColor(paintBrush.color)
-        }
-
-        blackBtn.setOnClickListener {
-            Toast.makeText(this, "Black !", Toast.LENGTH_SHORT).show()
-            paintBrush.color = Color.BLACK
-            currentColor(paintBrush.color)
-        }
-
-        eraser.setOnClickListener {
-            Toast.makeText(this, "Eraser !", Toast.LENGTH_SHORT).show()
-            pathList.clear()
-            colorList.clear()
-            path.reset()
-        }
+        //////글씨크기, 바인딩 하나만 해줬는데 왜 다 적용??/////
+        binding.paintVIEW1.setStrokeWidth(4f)
+        //////////
 
         /////////////  SCREENSHOT CODE START  ///////////////////////////////////////////////////////////////////////////
         ///////// https://www.geeksforgeeks.org/how-to-capture-screenshot-of-a-view-and-save-it-to-gallery-in-android/
@@ -97,8 +103,6 @@ class stylusActivity : AppCompatActivity() {
 
         val cardView= findViewById<ImageView>(R.id.docsImage)
         //val TouchViewcardView = findViewById<MaterialCardView>(R.id.cardView2)
-        val TouchView1 = findViewById<PaintView>(R.id.paintVIEW1)
-        val TouchView2 = findViewById<PaintView>(R.id.paintVIEW2)
         val gestureListener = View.OnTouchListener(function = { view, event ->
             detector!!.onTouchEvent(event)
             if(event.getAction() == MotionEvent.ACTION_UP) {
@@ -106,7 +110,7 @@ class stylusActivity : AppCompatActivity() {
                     "isLongPressed" -> {
                         var viewNamelength= view.toString().length
                         var unionName= view.toString().substring(viewNamelength-11, viewNamelength-1)+"card"
-                        Toast.makeText(this, "$unionName", Toast.LENGTH_SHORT).show()
+                        //Toast.makeText(this, "$unionName", Toast.LENGTH_SHORT).show()
                         var resID = resources.getIdentifier("$unionName", "id", packageName)
                         val bitmap = getScreenShotFromView(findViewById(resID))
                         if (bitmap != null) {
@@ -118,8 +122,8 @@ class stylusActivity : AppCompatActivity() {
             }
             false
         })
-        TouchView1.setOnTouchListener(gestureListener)
-        TouchView2.setOnTouchListener(gestureListener)
+        binding.paintVIEW1.setOnTouchListener(gestureListener)
+        binding.paintVIEW2.setOnTouchListener(gestureListener)
 
         // on click of this button it will capture
         // screenshot and save into gallery
@@ -128,7 +132,6 @@ class stylusActivity : AppCompatActivity() {
             // getScreenShotFromView method it is
             // implemented below
             val bitmap = getScreenShotFromView(cardView)
-
             // if bitmap is not null then
             // save it to gallery
             if (bitmap != null) {

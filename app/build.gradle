@@ -50,10 +50,9 @@ dependencies {
 
     implementation platform('com.google.firebase:firebase-bom:26.1.0')
     implementation 'com.google.firebase:firebase-storage'
-
-
     implementation "com.microsoft.device:ink:1.0.0-alpha2"
 
+    implementation 'com.github.imabhishekkumar:CanvasView:1.0'
     implementation 'com.android.support:multidex:1.0.3'
 
     implementation 'com.google.android.gms:play-services-auth:20.3.0'

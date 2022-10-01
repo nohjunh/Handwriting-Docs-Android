@@ -34,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
     var auth: FirebaseAuth? = null
     var googleSignInClient: GoogleSignInClient? = null
     var GOOGLE_LOGIN_CODE = 9001
-    var callbackManager : CallbackManager? = null
+    var callbackManager: CallbackManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
+        googleSignInClient = GoogleSignIn.getClient(this,gso)
         //printHashKey() //해쉬값 가져오는건 주석처리 (해쉬값이 필요할때만 풀어서 사용)]
 
         callbackManager = CallbackManager.Factory.create()
@@ -68,31 +68,31 @@ class LoginActivity : AppCompatActivity() {
     fun printHashKey() {
         try {
             val info: PackageInfo = packageManager
-                .getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
+                .getPackageInfo(packageName,PackageManager.GET_SIGNATURES)
             for (signature in info.signatures) {
                 val md = MessageDigest.getInstance("SHA")
                 md.update(signature.toByteArray())
-                val hashKey = String(Base64.encode(md.digest(), 0))
-                Log.i("TAG", "printHashKey() Hash Key: $hashKey")
+                val hashKey = String(Base64.encode(md.digest(),0))
+                Log.i("TAG","printHashKey() Hash Key: $hashKey")
             }
         } catch (e: NoSuchAlgorithmException) {
-            Log.e("TAG", "printHashKey()", e)
+            Log.e("TAG","printHashKey()",e)
         } catch (e: Exception) {
-            Log.e("TAG", "printHashKey()", e)
+            Log.e("TAG","printHashKey()",e)
         }
     }
 
     fun googleLogin() {
         var signInIntent = googleSignInClient?.signInIntent
-        startActivityForResult(signInIntent, GOOGLE_LOGIN_CODE)
+        startActivityForResult(signInIntent,GOOGLE_LOGIN_CODE)
     }
 
-    fun facebookLogin(){
+    fun facebookLogin() {
         LoginManager.getInstance()
-            .logInWithReadPermissions(this, listOf("public_profile", "email"))
+            .logInWithReadPermissions(this,listOf("public_profile","email"))
 
         LoginManager.getInstance()
-            .registerCallback(callbackManager, object : FacebookCallback<LoginResult>{
+            .registerCallback(callbackManager,object : FacebookCallback<LoginResult> {
                 override fun onSuccess(result: LoginResult?) {
                     //second step
                     handleFacebookAccessToken(result?.accessToken)
@@ -107,29 +107,29 @@ class LoginActivity : AppCompatActivity() {
             })
     }
 
-    fun handleFacebookAccessToken(token : AccessToken?){
+    fun handleFacebookAccessToken(token: AccessToken?) {
         var credential = FacebookAuthProvider.getCredential(token?.token!!)
         auth?.signInWithCredential(credential)
             ?.addOnCompleteListener { task ->
-                if(task.isSuccessful){
+                if (task.isSuccessful) {
                     // Third step
                     // Login
                     moveMainPage(task.result?.user)
-                }else{
+                } else {
                     // Show the error message
-                    Toast.makeText(this, task.exception!!.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this,task.exception!!.message,Toast.LENGTH_LONG).show()
                 }
             }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        callbackManager?.onActivityResult(requestCode, resultCode,data)
+    override fun onActivityResult(requestCode: Int,resultCode: Int,data: Intent?) {
+        super.onActivityResult(requestCode,resultCode,data)
+        callbackManager?.onActivityResult(requestCode,resultCode,data)
         // google login
-        if(requestCode == GOOGLE_LOGIN_CODE){
+        if (requestCode == GOOGLE_LOGIN_CODE) {
             var result = Auth.GoogleSignInApi.getSignInResultFromIntent(data!!)
             if (result != null) {
-                if(result.isSuccess){
+                if (result.isSuccess) {
                     var account = result.signInAccount
                     firebaseAuthWithGoogle(account!!)
                 }
@@ -137,58 +137,58 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun firebaseAuthWithGoogle(account: GoogleSignInAccount?){
-        var credential = GoogleAuthProvider.getCredential(account?.idToken, null)
+    fun firebaseAuthWithGoogle(account: GoogleSignInAccount?) {
+        var credential = GoogleAuthProvider.getCredential(account?.idToken,null)
         auth?.signInWithCredential(credential)
             ?.addOnCompleteListener { task ->
-                if(task.isSuccessful){
+                if (task.isSuccessful) {
                     // Login
                     moveMainPage(task.result?.user)
-                }else{
+                } else {
                     // Show the error message
-                    Toast.makeText(this, task.exception!!.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this,task.exception!!.message,Toast.LENGTH_LONG).show()
                 }
             }
     }
 
-    fun signinAndSignup(){
+    fun signinAndSignup() {
         auth?.createUserWithEmailAndPassword(
             binding.emailEdittext.text.toString(),
             binding.passwordEdittext.text.toString()
         )
             ?.addOnCompleteListener { task ->
-                if(task.isSuccessful){
+                if (task.isSuccessful) {
                     // Creating a user account
                     moveMainPage(task.result?.user)
-                }else if(task.exception?.message.isNullOrEmpty()){
+                } else if (task.exception?.message.isNullOrEmpty()) {
                     // Show the error message
-                    Toast.makeText(this, task.exception!!.message, Toast.LENGTH_LONG).show()
-                }else{
+                    Toast.makeText(this,task.exception!!.message,Toast.LENGTH_LONG).show()
+                } else {
                     // Login if you have account
                     signinEmail()
                 }
             }
     }
 
-    fun signinEmail(){
+    fun signinEmail() {
         auth?.signInWithEmailAndPassword(
             binding.emailEdittext.text.toString(),
             binding.passwordEdittext.text.toString()
         )
             ?.addOnCompleteListener { task ->
-                if(task.isSuccessful){
+                if (task.isSuccessful) {
                     // Login
                     moveMainPage(task.result?.user)
-                }else{
+                } else {
                     // Show the error message
-                    Toast.makeText(this, task.exception!!.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this,task.exception!!.message,Toast.LENGTH_LONG).show()
                 }
             }
     }
 
-    fun moveMainPage(user: FirebaseUser?){
-        if(user!=null){
-            startActivity(Intent(this, MainActivity::class.java))
+    fun moveMainPage(user: FirebaseUser?) {
+        if (user != null) {
+            startActivity(Intent(this,MainActivity::class.java))
         }
     }
 }
