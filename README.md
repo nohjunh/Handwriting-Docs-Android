@@ -1,5 +1,5 @@
 # Handwriting-Docs-Android
 
-Implementation of Android function in a project that aims to create an app
+Implement detailed functionality for Android part in projects aimed at improving handwriting recognition accuracy
 
 converts handwriting to text when writing a document.
