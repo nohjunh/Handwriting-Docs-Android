@@ -117,6 +117,16 @@
             android:gravity="center"
             android:text="ScreenShot" />
         <Button
+            android:id="@+id/resetPen"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/nav_division"
+            android:layout_marginLeft="360dp"
+            android:layout_marginTop= "15dp"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/icon_reset"
+            />
+        <Button
             android:id="@+id/MouseCapture"
             android:layout_width="match_parent"
             android:layout_height="0dp"

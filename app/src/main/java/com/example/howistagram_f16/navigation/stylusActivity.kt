@@ -61,6 +61,7 @@ class stylusActivity : AppCompatActivity() {
 
         val captureButton = findViewById<Button>(R.id.SCbutton)
         val MouseCaptureButton = findViewById<Button>(R.id.MouseCapture)
+        val resetButton = findViewById<Button>(R.id.resetPen)
 
         var currentAction= ""
         detector = GestureDetector(this,object : GestureDetector.SimpleOnGestureListener() {
@@ -195,6 +196,13 @@ class stylusActivity : AppCompatActivity() {
         // start cropping activity for pre-acquired image saved on the device
             CropImage.activity(URII)
                 .start(this);
+        }
+
+        resetButton.setOnClickListener{
+            // 필기체 초기화
+            pathList.clear()
+            colorList.clear()
+            path.reset()
         }
     }
     // Cropper Activity execute GoGO!!
