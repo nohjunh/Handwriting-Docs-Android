@@ -1,6 +1,7 @@
 package com.example.howistagram_f16.navigation
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
@@ -44,12 +45,19 @@ class stylusActivity : AppCompatActivity() {
     var xValue= 0
     var yValue= 0
     var URII : Uri? = null
+    var PICK_IMAGE_FROM_ALBUM = 0
+    var PICK_IMAGE_FROM_ALBUM_Vaild = 0
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         supportActionBar?.hide()
+
+        // Open the album
+        var photoPickerIntent = Intent(Intent.ACTION_PICK)
+        photoPickerIntent.type = "image/*"
+        startActivityForResult(photoPickerIntent, PICK_IMAGE_FROM_ALBUM)
 
         val captureButton = findViewById<Button>(R.id.SCbutton)
         val MouseCaptureButton = findViewById<Button>(R.id.MouseCapture)
@@ -62,7 +70,6 @@ class stylusActivity : AppCompatActivity() {
                 yValue= e.getY().toInt()
                 currentAction = "isLongPressed"
                 super.onLongPress(e)
-
             }
         })
 
@@ -119,6 +126,7 @@ class stylusActivity : AppCompatActivity() {
         )
 
         val cardView= findViewById<MaterialCardView>(R.id.cardView)
+
 //        val gestureListener = View.OnTouchListener(function = { view,event ->
 //            detector!!.onTouchEvent(event)
 //            if (event.getAction() == MotionEvent.ACTION_UP) {
@@ -187,13 +195,9 @@ class stylusActivity : AppCompatActivity() {
         // start cropping activity for pre-acquired image saved on the device
             CropImage.activity(URII)
                 .start(this);
-
-            pathList.clear()
-            colorList.clear()
-            path.reset()
         }
     }
-
+    // Cropper Activity execute GoGO!!
     override fun onActivityResult(requestCode: Int,resultCode: Int,data: Intent?) {
         super.onActivityResult(requestCode,resultCode,data)
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
@@ -212,6 +216,13 @@ class stylusActivity : AppCompatActivity() {
                     saveMediaToStorage(bitmap)
                 }
                 Toast.makeText(this,"Captured View and saved to Gallery",Toast.LENGTH_SHORT).show()
+
+                // 필기체 초기화
+                pathList.clear()
+                colorList.clear()
+                path.reset()
+
+                // 변환된 텍스트 띄어줌
                 val Mainlayout = findViewById<MaterialCardView>(R.id.cardView)
                 val texts1 = TextView(this)
                 val layoutParams: LinearLayout.LayoutParams = LinearLayout.LayoutParams(
@@ -221,9 +232,9 @@ class stylusActivity : AppCompatActivity() {
                 layoutParams.gravity = Gravity.CENTER;
                 layoutParams.setMargins(xValue+30, yValue+30,0,0)
                 texts1.setLayoutParams(layoutParams)
-                texts1.setText("노준혁")
+                texts1.setText("변환된 Text")
                 texts1.setTextColor(Color.BLACK)
-                texts1.setTextSize(TypedValue.COMPLEX_UNIT_SP,35F)
+                texts1.setTextSize(TypedValue.COMPLEX_UNIT_SP,26F)
                 Mainlayout.addView(texts1)
 
                 // URI을 얻기위해 임시로 만든 image를 mediastore에서 삭제시킴.
@@ -233,12 +244,21 @@ class stylusActivity : AppCompatActivity() {
                 val error = result.error
             }
         }
+
+        var photoUrl : Uri? = null
+        if(requestCode == PICK_IMAGE_FROM_ALBUM){
+            if(resultCode == Activity.RESULT_OK){
+                // 선택된 이미지의 경로 값 저장
+                photoUrl= data?.data // 변수에다가 path data 담아줌
+                binding.ImageUpdate.setImageURI(photoUrl) // ImageView에다가 이미지 GOGO~
+            }
+        }
     }
 
     fun getImageUriFromBitmap(context: Context,bitmap: Bitmap): Uri{
         val bytes = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG,100,bytes)
-        // URI을 Bitmap으로 바꾸기위해 mediastore에 image로 저장해놓지만
+        // URI을 Bitmap으로 바꾸기위해 mediastore에 "Title"이라는 name의 image로 저장해놓지만
         // 후에 이 image를 삭제함.
         val path = MediaStore.Images.Media.insertImage(context.contentResolver,bitmap,"Title",null)
         return Uri.parse(path.toString())

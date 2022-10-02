@@ -80,11 +80,17 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/ImageUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType = "fitXY"
+            />
         <com.example.howistagram_f16.PaintView
             android:id="@+id/paintVIEW1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/test1">
+            >
         </com.example.howistagram_f16.PaintView>
     </com.google.android.material.card.MaterialCardView>
 
