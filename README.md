@@ -7,4 +7,5 @@ Implement detailed functionality for Android part in projects aimed at improving
 
 converts handwriting to text when writing a document.
 
-Final project repository including cpp files: https://github.com/scv1702/2022-capstone-design-project
+Final project repository including Android NDK:
+https://github.com/scv1702/2022-capstone-design-project
