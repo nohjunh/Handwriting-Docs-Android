@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="41dp"
+        android:background="@color/white" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:theme="@style/Theme.MaterialComponents.Light"
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_height="match_parent"
+        >
+        <com.theartofdev.edmodo.cropper.CropImageView
+            xmlns:custom="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cropImageView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/ImageUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            />
+        <com.example.capstoneandroid.PaintView
+            android:id="@+id/paintVIEW1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            >
+        </com.example.capstoneandroid.PaintView>
+    </com.google.android.material.card.MaterialCardView>
+
+    <Button
+        android:id="@+id/SCbutton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="ScreenShot"
+        />
+    <!-- button color #30C4FF
+    !-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="end">
+        <Button
+            android:id="@+id/penColor"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/pen"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            >
+        </Button>
+
+        <Button
+            android:id="@+id/resetPen"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/eraser"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"/>
+
+        <Button
+            android:id="@+id/popupID"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/export"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            />
+
+        <Button
+            android:id="@+id/StylusSetting"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/setting"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            />
+
+
+
+
+    </LinearLayout>
+
+
+
+
+    <Button
+        android:id="@+id/MouseCapture"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        />
+</RelativeLayout>

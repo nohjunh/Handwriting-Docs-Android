@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="red">#f50505</color>
+    <color name="colorPrimary">#20243e</color>
+    <color name="colorPrimaryDark">#1e223b</color>
+    <color name="colorAccent">#FFF</color>
+    <color name="PrimaryTextCoor">#ffffff</color>
+    <color name="LigthTextCoor">#b0b2c2</color>
+    <color name="colorWistful">#a2a2d2</color>
+    <color name="SecondaryTextCoor">#1a1a31</color>
+    <color name="colorLightGray">#f1f1f1</color>
+
+    <color name="white">#fff</color>
+    <color name="dark">#262a41</color>
+    <color name="fordTextColor">#d1cece</color>
+    <color name="blue">#6d5fce</color>
+    <color name="darkblue">#353b58</color>
+    <color name="lineColor">#7d8090</color>
+    <color name="blueTextCoor">#3fb7d9</color>
+    <color name="whiteTextCoor">#FFF</color>
+    <color name="little_white">#F9F9F9</color>
+    <color name="naviTextColor">#6E6E6E</color>
+    <color name="light_blue">#DEEAEF</color>
+    <color name="backgroundColor">#FF9494</color>
+    <!--
+    <color name="backgroundColor">#FF8B8B</color>
+    !-->
+    <color name="mainpencolor">#FD5E5E</color>
+    <color name="secondpencolor">#FF9494</color>
+    <color name="grayPenColor">#616161</color>
+
+</resources>

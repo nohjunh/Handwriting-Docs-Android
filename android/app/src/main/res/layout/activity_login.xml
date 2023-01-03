@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingBottom="30dp">
+
+        <TextView
+            android:id="@+id/nameTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DocsHelper"
+            android:fontFamily="@font/gmarket_sans_ttf_bold"
+            android:textColor="@color/mainpencolor"
+            android:textSize="30dp"
+            android:paddingBottom="50dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"/>
+
+        <EditText
+            android:id="@+id/login_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/opensanssemibold"
+            android:layout_weight="1"
+            android:ems="10"
+            android:textSize="17dp"
+            android:inputType="text"
+            android:hint="아이디" />
+
+        <EditText
+            android:id="@+id/login_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opensanssemibold"
+            android:layout_weight="1"
+            android:ems="10"
+            android:textSize="17dp"
+            android:inputType="textPassword"
+            android:hint="비밀번호"
+            android:layout_alignBottom="@+id/login_email"/>
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/opensanssemibold"
+            android:background="@drawable/btn_radius"
+            android:textSize="18dp"
+            android:text="로그인" />
+
+        <Button
+            android:id="@+id/btn_goToSignup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opensanssemibold"
+            android:text="회원가입"
+            android:textColor="@color/lineColor"
+            android:background="#00ff0000"
+            android:layout_marginVertical="10dp"/>
+    </LinearLayout>
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-4dp"
+        android:background="@color/little_white"
+        app:itemTextColor="@drawable/bottom_icon_color"
+        app:itemIconTint="@drawable/bottom_icon_color"
+        app:itemIconSize="18dp"
+        app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
+        app:itemTextAppearanceInactive="@style/BottomNavigationView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_navigation_main">
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+</RelativeLayout>
